@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --header-h: 108px;
+    --radius: 0px;
+    --shadow: 0 28px 90px rgba(0,0,0,.42);
+    --blur: blur(18px);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-bg text-fg font-body overflow-x-hidden;
+    background-image:
+      radial-gradient(circle at top, rgba(201,168,76,.05), transparent 28%),
+      linear-gradient(180deg, #080808, #080808);
+  }
+
+  h1, h2, h3 { @apply font-display; }
+  a { @apply text-inherit no-underline; }
+  img { @apply block max-w-full; }
+}
+
+@layer components {
+
+  /* ── BOTÕES — fill deslizante, compactos ── */
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2
+      overflow-hidden
+      min-h-[38px] px-6
+      font-body text-[.68rem] font-black tracking-[.2em] uppercase
+      border-none cursor-pointer;
+    border-radius: 0;
+    transition: color .35s;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-101%);
+    transition: transform .4s cubic-bezier(.77,0,.18,1);
+  }
+
+  .btn:hover::before { transform: translateX(0); }
+
+  .btn span, .btn > * { position: relative; z-index: 1; }
+
+  .btn-primary {
+    @apply bg-fg text-bg;
+  }
+  .btn-primary::before { @apply bg-gold; }
+  .btn-primary:hover { @apply text-bg; }
+
+  .btn-secondary {
+    @apply bg-transparent text-gold;
+    box-shadow: inset 0 0 0 1px #C9A84C;
+  }
+  .btn-secondary::before { @apply bg-gold; }
+  .btn-secondary:hover { @apply text-bg; }
+
+  .btn-ghost {
+    @apply bg-transparent text-fg;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.2);
+  }
+  .btn-ghost::before { background: rgba(255,255,255,.08); }
+  .btn-ghost:hover { @apply text-fg; }
+
+  /* ── EYEBROW ── */
+  .eyebrow {
+    @apply inline-block text-gold uppercase tracking-[.22em]
+      text-[.72rem] font-extrabold font-body mb-3;
+  }
+  .eyebrow-lg { @apply tracking-[.26em] text-[.76rem]; }
+
+  /* ── SECTION ── */
+  .section {
+    @apply relative py-28 border-b border-line bg-bg;
+  }
+
+  /* ── INTERSTITIAL ── */
+  .interstitial {
+    @apply flex items-center justify-center py-32 px-6 text-center
+      border-b border-line bg-bg overflow-hidden;
+  }
+  .interstitial p {
+    @apply font-display text-[clamp(2.4rem,5.8vw,5.4rem)] font-light italic text-fg
+      leading-[1.1] max-w-[22ch] tracking-[-0.01em] relative z-10;
+  }
+
+  /* ── CARD ── */
+  .card-dark {
+    @apply border border-white/10 bg-white/[.02];
+  }
+
+  /* ── FORM ── */
+  .form-field { @apply flex flex-col gap-1.5 mb-4; }
+  .form-field label { @apply font-body text-[.82rem] text-muted font-bold tracking-wide uppercase; }
+  .form-input {
+    @apply bg-white/[.05] border border-white/[.12] px-4 py-3
+      text-fg text-[.95rem] font-body transition-colors duration-200
+      focus:outline-none focus:border-gold;
+    border-radius: 0;
+  }
+
+  /* ── NOISE ── */
+  .noise {
+    @apply fixed inset-0 pointer-events-none opacity-[.03] z-[1];
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(255,255,255,.5) .5px, transparent .6px),
+      radial-gradient(circle at 80% 30%, rgba(255,255,255,.45) .5px, transparent .6px),
+      radial-gradient(circle at 40% 80%, rgba(255,255,255,.35) .5px, transparent .6px);
+    background-size: 140px 140px, 180px 180px, 220px 220px;
+  }
+
+  /* ── FAIXA BRANCA EDITORAS — desliza da esquerda ao scroll ── */
+  .editoras-strip {
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 1s cubic-bezier(.22,1,.36,1), opacity .7s ease;
+  }
+  .editoras-strip.revealed {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Scrollbar */
+* { scrollbar-color: #C9A84C rgba(255,255,255,.08); scrollbar-width: thin; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
