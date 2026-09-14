@@ -41,7 +41,7 @@ export default function Footer() {
         </span>
       </div>
 
-      <p className="font-display text-[1.4rem] text-fg/70 italic mb-8">A música continua.</p>
+      <p className="font-display text-[1.4rem] text-fg/70 italic mb-8">O tempo transforma tudo. A música transforma o tempo em memória.</p>
 
       <nav className="flex flex-wrap justify-center gap-0 mb-8">
         {links.map(({ href, label }, i) => (
@@ -75,7 +75,7 @@ export default function Footer() {
           Edney Fernandes · Todos os direitos reservados
         </p>
         <p className="font-body text-[.56rem] tracking-[.08em] uppercase text-muted/30">
-          Curadoria do acervo: Laiá Music · ABRAMUS 4014
+          Curadoria do acervo: Laiá Music
         </p>
       </div>
     </footer>
