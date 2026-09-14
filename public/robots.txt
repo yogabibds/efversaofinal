@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://edneyfernandes.com/sitemap.xml
-
-User-agent: Googlebot
-Allow: /
